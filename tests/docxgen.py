@@ -1,9 +1,9 @@
 """A tiny DOCX writer, used to build test fixtures.
 
 A .docx is a ZIP of XML parts, so stdlib ``zipfile`` is all this needs. Writing
-the parts by hand lets a test say exactly what it means -- this paragraph uses
+the parts by hand lets a test say exactly what it means: this paragraph uses
 the Heading 2 style, that one is 16pt bold with no style at all, this list is
-numbered at level 1 -- which is the difference between testing the reader and
+numbered at level 1. That is the difference between testing the reader and
 testing python-docx.
 """
 

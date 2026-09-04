@@ -113,8 +113,8 @@ def build_heading_model(
 ) -> HeadingModel:
     """Learn the type hierarchy of one document.
 
-    ``body_lines`` restricts the body-size vote to a subset -- in practice the
-    lines outside the header and footer bands -- while ``lines`` still supplies
+    ``body_lines`` restricts the body-size vote to a subset (in practice the
+    lines outside the header and footer bands), while ``lines`` still supplies
     the candidate styles.
     """
     body = body_size(body_lines if body_lines is not None else lines)
@@ -227,7 +227,7 @@ def normalize_levels(levels: list[int], options: ParseOptions) -> list[int]:
     and the gap carries no information the document intended.
 
     The remapping is global rather than positional, so one type style always
-    maps to one level no matter where in the document it appears -- which a
+    maps to one level no matter where in the document it appears, which a
     running "never skip more than one" walk would not guarantee.
     """
     if not options.normalize_heading_levels or not levels:

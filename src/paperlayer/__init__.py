@@ -1,4 +1,4 @@
-"""paperlayer -- PDF and DOCX to clean, structured Markdown for RAG pipelines.
+"""paperlayer: PDF and DOCX to clean, structured Markdown for RAG pipelines.
 
     >>> from paperlayer import parse
     >>> doc = parse("report.pdf")

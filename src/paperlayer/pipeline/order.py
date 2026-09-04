@@ -19,7 +19,7 @@ __all__ = ["Element", "detect_columns", "reading_order"]
 
 Element = RawLine | RawTable
 
-#: Column index meaning "spans every column" -- a banner heading or wide table.
+#: Column index meaning "spans every column": a banner heading or wide table.
 FULL_WIDTH = -1
 
 #: Below this many lines a page has no statistical basis for column detection.

@@ -1,9 +1,9 @@
 """PDF reader.
 
 pdfplumber is used for exactly two things: positioned characters
-(``page.chars``) and vector edges (``page.edges``). Everything structural --
-grouping characters into words, words into lines, detecting superscripts,
-recovering tables -- is done here and in :mod:`paperlayer.pipeline`, because
+(``page.chars``) and vector edges (``page.edges``). Everything structural
+(grouping characters into words, words into lines, detecting superscripts,
+recovering tables) is done here and in :mod:`paperlayer.pipeline`, because
 the built-in extractors throw away the font metrics that heading detection
 depends on and flatten tables into ambiguous text.
 """

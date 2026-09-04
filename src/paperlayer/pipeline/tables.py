@@ -7,9 +7,9 @@ Two independent detectors, run in that order:
     cell boundaries verbatim, including horizontally merged cells.
 ``unruled``
     Falls back to whitespace alignment for tables drawn with nothing but
-    spacing. Deliberately strict -- a run of lines must share a column gap that
-    is empty on *every* line -- because a false positive here turns readable
-    prose into a mangled grid, which is far worse than missing a table.
+    spacing. Deliberately strict: a run of lines must share a column gap that is
+    empty on *every* line. A false positive here turns readable prose into a
+    mangled grid, which is far worse than missing a table.
 
 Neither uses pdfplumber table extraction; both work off the same word and edge
 primitives the rest of the pipeline sees.

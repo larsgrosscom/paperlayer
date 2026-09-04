@@ -1,8 +1,8 @@
 """The intermediate representation that sits between readers and the pipeline.
 
 A reader turns a file into :class:`RawDocument`: pages of positioned lines with
-font metrics attached. Everything above this layer -- heading detection,
-artifact stripping, tables, footnotes -- works only on these types and never
+font metrics attached. Everything above this layer (heading detection, artifact
+stripping, tables, footnotes) works only on these types and never
 touches pdfplumber or python-docx, which is what keeps the analysis testable
 without a real file on disk.
 """
@@ -34,8 +34,8 @@ class RawWord:
     font: str = ""
     bold: bool = False
     italic: bool = False
-    #: Raised and shrunk relative to the surrounding line -- a footnote
-    #: reference marker, most of the time.
+    #: Raised and shrunk relative to the surrounding line, which usually means
+    #: a footnote reference marker.
     superscript: bool = False
 
     def __len__(self) -> int:

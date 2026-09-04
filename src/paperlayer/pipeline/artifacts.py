@@ -2,7 +2,7 @@
 
 The signal is repetition, not position: a line is furniture when the *same*
 line, digits normalised away, shows up in the same band on most pages. That
-catches ``Confidential -- Draft 4`` and ``Page 7 of 92`` alike, and leaves a
+catches ``Confidential Draft 4`` and ``Page 7 of 92`` alike, and leaves a
 first-page-only subtitle sitting in the header band untouched.
 
 Nothing is stripped from a single-page document. With one page there is no
@@ -201,8 +201,8 @@ def _mark_floating_repeats(
             text = line.text.strip()
             if not text or len(text) > _MAX_FLOATING_CHARS:
                 continue
-            # Furniture outside the bands -- watermarks, classification banners,
-            # side rules -- is set smaller than body text. Body-size prose that
+            # Furniture outside the bands (watermarks, classification banners,
+            # side rules) is set smaller than body text. Body-size prose that
             # happens to repeat is content, and deleting it is unrecoverable.
             if body_size and line.dominant_size() > _SMALL_PRINT * body_size:
                 continue

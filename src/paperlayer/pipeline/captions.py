@@ -51,8 +51,8 @@ _MAX_CAPTION_CHARS = 400
 def caption_label(text: str) -> tuple[str, str] | None:
     """``(kind, label)`` when ``text`` opens like a caption, else ``None``.
 
-    ``kind`` is one of the values in :data:`CAPTION_KINDS` -- ``figure``,
-    ``table``, ``code`` or ``equation`` -- and ``label`` is the label as
+    ``kind`` is one of the values in :data:`CAPTION_KINDS` (``figure``,
+    ``table``, ``code`` or ``equation``), and ``label`` is the label as
     written, e.g. ``Table 3.1``.
     """
     stripped = text.strip()

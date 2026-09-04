@@ -82,7 +82,7 @@ class _Builder:
         self._list_lines: list[RawLine] = []
         self._scale = IndentScale([])
 
-    # -- entry points ---------------------------------------------------
+    # Entry points
 
     def feed(self, element: Element) -> None:
         if isinstance(element, RawTable):
@@ -95,7 +95,7 @@ class _Builder:
         self._flush_list()
         self._flush_paragraph()
 
-    # -- line handling --------------------------------------------------
+    # Line handling
 
     def _feed_line(self, line: RawLine) -> None:
         text = self._line_text(line)
@@ -196,8 +196,8 @@ class _Builder:
         """Whether this line is the wrapped continuation of the heading above.
 
         A long title set across two lines is one heading, not two. The test is
-        deliberately tight -- same level, same type size and weight, same page,
-        and a gap no larger than normal line spacing -- because merging two
+        deliberately tight (same level, same type size and weight, same page,
+        and a gap no larger than normal line spacing), because merging two
         genuinely separate headings would destroy the document outline.
         """
         if not self.blocks:
@@ -222,7 +222,7 @@ class _Builder:
         # A heading that already reads as a complete sentence is finished.
         return not previous.text.rstrip().endswith((".", "!", "?", ":"))
 
-    # -- paragraph breaks -----------------------------------------------
+    # Paragraph breaks
 
     def _breaks_paragraph(self, line: RawLine) -> bool:
         prev, _ = self._para[-1]
@@ -285,7 +285,7 @@ class _Builder:
             )
         )
 
-    # -- lists ------------------------------------------------------------
+    # Lists
 
     def _list_continues(self, line: RawLine) -> bool:
         if not self._list_lines:
@@ -350,7 +350,7 @@ class _Builder:
             )
         )
 
-    # -- tables -----------------------------------------------------------
+    # Tables
 
     def _emit_table(self, table: RawTable) -> None:
         rows = [list(row) for row in table.rows]

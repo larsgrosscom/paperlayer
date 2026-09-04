@@ -2,8 +2,8 @@
 
 Rendering is deliberately plain. Inline emphasis from the source is dropped,
 because bold and italic runs cost tokens in an embedding pipeline and carry
-almost no retrieval signal, while the structure that does carry signal --
-headings, lists, tables, footnote attachment -- is preserved exactly.
+almost no retrieval signal, while the structure that does carry signal
+(headings, lists, tables, footnote attachment) is preserved exactly.
 """
 
 from __future__ import annotations

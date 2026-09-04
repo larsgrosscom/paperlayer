@@ -169,7 +169,7 @@ class TableData:
 
 @dataclass(slots=True)
 class Block:
-    """One structural unit of a document -- the natural chunk for a RAG index."""
+    """One structural unit of a document, the natural chunk for a RAG index."""
 
     type: BlockType
     #: Normalised plain text. For tables this is a tab-separated flattening,
@@ -268,7 +268,7 @@ class Document:
         return [fn for b in self.blocks for fn in b.footnotes]
 
     def outline(self) -> list[tuple[int, str]]:
-        """``(level, text)`` for every heading -- a cheap table of contents."""
+        """``(level, text)`` for every heading, as a cheap table of contents."""
         return [(b.level or 1, b.text) for b in self.blocks if b.type == "heading"]
 
     def to_dict(self) -> dict[str, Any]:

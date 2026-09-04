@@ -46,7 +46,7 @@ class ParseOptions:
     build one by hand.
     """
 
-    # -- content selection -------------------------------------------------
+    # Content selection
     #: Keep running headers, footers and page numbers instead of stripping
     #: them. When True they are emitted as paragraphs tagged
     #: ``meta["artifact"] = "header" | "footer" | "page_number"``.
@@ -58,7 +58,7 @@ class ParseOptions:
     #: Password for encrypted PDFs.
     password: str | None = None
 
-    # -- detection toggles -------------------------------------------------
+    # Detection toggles
     detect_headings: bool = True
     detect_tables: bool = True
     #: Recover tables that are aligned with whitespace only, with no ruling
@@ -71,7 +71,7 @@ class ParseOptions:
     #: straight across the page.
     detect_columns: bool = True
 
-    # -- text normalisation ------------------------------------------------
+    # Text normalisation
     #: Join words split across a line break by a trailing hyphen.
     dehyphenate: bool = True
     #: Expand ligatures, normalise dashes and quotes, drop zero-width marks.
@@ -80,7 +80,7 @@ class ParseOptions:
     #: structure of the output (a paragraph starting with ``#``, for example).
     escape_markdown: bool = True
 
-    # -- heading tuning ----------------------------------------------------
+    # Heading tuning
     #: Minimum ``size / body_size`` ratio for a line to be considered a
     #: heading on size alone. Bold lines qualify at a lower ratio.
     min_heading_ratio: float = 1.12
@@ -92,7 +92,7 @@ class ParseOptions:
     #: (an h1 followed by an h3 becomes an h1 followed by an h2).
     normalize_heading_levels: bool = True
 
-    # -- artifact tuning ---------------------------------------------------
+    # Artifact tuning
     #: Fraction of the page height treated as the header zone.
     header_band: float = 0.10
     #: Fraction of the page height treated as the footer zone.
@@ -103,7 +103,7 @@ class ParseOptions:
     #: ...and on at least this many pages, so short documents are not damaged.
     artifact_min_pages: int = 3
 
-    # -- layout tuning -----------------------------------------------------
+    # Layout tuning
     #: Word break threshold as a fraction of font size: a horizontal gap wider
     #: than this between two characters starts a new word.
     word_gap_ratio: float = 0.22

@@ -3,9 +3,9 @@
 Footnotes are the piece most extractors get worst: the note text lands at the
 bottom of the page, detached from the sentence that needed it, and the
 reference digit is silently glued onto the preceding word. Both halves are
-recovered here -- the note by its position and reduced type size, the reference
-by the superscript flag the reader preserved -- and then reunited, so the note
-travels in the same retrieval chunk as the claim it supports.
+recovered here: the note by its position and reduced type size, the reference by
+the superscript flag the reader preserved. The two are then reunited, so the
+note travels in the same retrieval chunk as the claim it supports.
 """
 
 from __future__ import annotations
@@ -134,8 +134,8 @@ def attach_footnotes(
 ) -> None:
     """Attach each footnote to the block whose text references it.
 
-    Notes whose reference could not be found -- a common outcome when the
-    reference sits inside a table cell or an image -- fall back to the last
+    Notes whose reference could not be found, a common outcome when the
+    reference sits inside a table cell or an image, fall back to the last
     block on their page, so nothing is silently dropped.
     """
     if not options.detect_footnotes or not notes_by_page:
