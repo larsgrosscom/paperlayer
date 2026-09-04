@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-09-04
+
+### Changed
+
+- README: added an author section linking to larsgross.com. No code changes;
+  this release exists so the project description on PyPI matches the
+  repository.
+
 ## [0.1.0] - 2026-09-04
 
 First release.
@@ -36,5 +44,6 @@ First release.
 - Benchmark script comparing against naive raw-text extraction with `tiktoken`
   token counts and a content-retention check.
 
-[Unreleased]: https://github.com/larsgrosscom/paperlayer/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/larsgrosscom/paperlayer/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/larsgrosscom/paperlayer/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/larsgrosscom/paperlayer/releases/tag/v0.1.0
