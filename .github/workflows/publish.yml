@@ -1,0 +1,121 @@
+name: Publish to PyPI
+
+# Publishing uses PyPI Trusted Publishing (OpenID Connect). GitHub proves this
+# workflow's identity to PyPI directly, so there is no API token anywhere: not
+# in repository secrets, not in the environment, not on a developer machine.
+#
+# One-time setup on PyPI (https://pypi.org/manage/account/publishing/):
+#   Owner:            larsgrosscom
+#   Repository:       paperlayer
+#   Workflow:         publish.yml
+#   Environment:      pypi
+#
+# Then publish by creating a GitHub Release. The tag must match the version in
+# src/paperlayer/__init__.py, which the verify job below enforces.
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      target:
+        description: Where to publish
+        required: true
+        default: testpypi
+        type: choice
+        options: [testpypi, pypi]
+
+permissions:
+  contents: read
+
+jobs:
+  verify:
+    name: verify tag matches __version__
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e ".[dev]"
+
+      - name: Test
+        run: pytest -q
+
+      - name: Compare tag with the package version
+        if: github.event_name == 'release'
+        run: |
+          version=$(python -c "import paperlayer; print(paperlayer.__version__)")
+          tag="${GITHUB_REF_NAME#v}"
+          echo "package=$version tag=$tag"
+          if [ "$version" != "$tag" ]; then
+            echo "::error::Tag $GITHUB_REF_NAME does not match __version__ $version" \
+                 " -- bump src/paperlayer/__init__.py or retag."
+            exit 1
+          fi
+
+  build:
+    name: build distributions
+    needs: verify
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build
+        run: |
+          python -m pip install --upgrade pip build twine
+          python -m build
+          python -m twine check --strict dist/*
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: distributions
+          path: dist/
+
+  publish-testpypi:
+    name: publish to TestPyPI
+    needs: build
+    if: github.event_name == 'workflow_dispatch' && inputs.target == 'testpypi'
+    runs-on: ubuntu-latest
+    environment:
+      name: testpypi
+      url: https://test.pypi.org/p/paperlayer
+    permissions:
+      # The OIDC token that stands in for an API token.
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: distributions
+          path: dist/
+
+      - uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          repository-url: https://test.pypi.org/legacy/
+
+  publish-pypi:
+    name: publish to PyPI
+    needs: build
+    if: github.event_name == 'release' || inputs.target == 'pypi'
+    runs-on: ubuntu-latest
+    environment:
+      name: pypi
+      url: https://pypi.org/p/paperlayer
+    permissions:
+      id-token: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: distributions
+          path: dist/
+
+      - uses: pypa/gh-action-pypi-publish@release/v1

@@ -1,0 +1,2 @@
+# Normalise line endings: CI runs on Linux, development happens on Windows.
+* text=auto eol=lf
