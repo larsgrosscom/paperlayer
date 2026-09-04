@@ -186,6 +186,10 @@ ruff check . && mypy
 
 The test suite generates its own PDF and DOCX fixtures in-process (`tests/pdfgen.py`, `tests/docxgen.py`), so the repository carries no binary test data and every fixture states its own typography explicitly.
 
+## Author
+
+Built by Lars Gross. More of my work at [larsgross.com](https://larsgross.com).
+
 ## License
 
 Apache-2.0. See [LICENSE](LICENSE).
